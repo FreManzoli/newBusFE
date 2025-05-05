@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funzione 1 - Partenza e Destinazione</title>
+  <link rel="stylesheet" href="funzione1.component.scss">
+  <!--per mappa percorsi-->
+  
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a routerLink="/initial-page">TORNA INDIETRO</a></li>
+      <li><a routerLink="/carrello">CARRELLO</a></li>
+      <li><a routerLink="/help-section">Aiuto</a></li>
+      
+    </ul>
+    
+  </nav>
+
+  <!-- Pagina con sidebar + contenuto -->
+  <div class="page-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">ICONIC</div>
+      <a routerLink="/funzione1" class="sidebar-link">Trova il tuo viaggio</a>
+      <a routerLink="/funzione2" class="sidebar-link">Scopri dove andare</a>
+    </aside>
+
+    <!-- Main content -->
+    <!-- Main content -->
+<div class="main-content">
+  <h1>BUSEXPRESS</h1>
+
+  <div id="partenza">
+    <h2>PARTENZA E DESTINAZIONE</h2>
+    <div class="input-group input-row">
+      <input type="text" id="partenza-input" placeholder="Inserisci la Partenza" required [(ngModel)]="cittaPartenza"/>
+      <input type="text" id="destinazione-input" placeholder="Inserisci la Destinazione" required [(ngModel)]="cittaArrivo"/>
+      <a href="#mostra" class="button no-margin" (click)="searchByPartenzaAndArrivo(cittaPartenza,cittaArrivo)">SCOPRI I BUS</a>
+    </div>
+    
+    <br><br><br>
+
+    <h2>FILTRA PER ORA E PREZZO</h2>
+    <div class="input-group filter-row">
+      <input type="time" id="orario-input" placeholder="Orario desiderato" [(ngModel)]="orarioDesiderato"/>
+      <a href="#mostra" class="button no-margin" (click)="findByOrario(orarioDesiderato,cittaPartenza,cittaArrivo)">FILTRA PER ORARIO</a>
+      <input type="number" id="costo-min-input" placeholder="Costo minimo (€)" min="0" step="1.00" [(ngModel)]="costoMinimo"/>
+      <input type="number" id="costo-max-input" placeholder="Costo massimo (€)" min="0" step="1.00" [(ngModel)]="costoMassimo"/>
+      <a href="#mostra" class="button no-margin" (click)="findByCosto(costoMinimo,costoMassimo,cittaPartenza,cittaArrivo)">FILTRA PER PREZZO</a>
+    </div>
+  </div>
+
+  <!-- SPOSTATO DENTRO main-content -->
+  <div id="mostra">
+    <div class="output">
+      <p>
+        <strong>Partenza:</strong> {{cittaPartenza}} <br> 
+        <strong>Destinazione:</strong> {{cittaArrivo}} <br><br> 
+        I dettagli dei bus sono ora disponibili.
+      </p>
+    </div>
+
+    <div id="tabella-bus">
+      <div *ngFor="let item of dataList; let i = index" class="card-container" (click)="navigateToMap(item)">
+        <mat-card class="mat-elevation-z4">
+          <mat-card-content>
+            <div class="horizontal-info">
+              <p><strong>Partenza:</strong> {{ item.partenza }}</p>
+              <p><strong>Orario Partenza:</strong> {{ item.ora_partenza }}</p>
+              <p><strong>Arrivo:</strong> {{ item.arrivo }}</p>
+              <p><strong>Orario Arrivo:</strong> {{ item.ora_arrivo }}</p>
+              <p><strong>Prezzo:</strong> {{ item.classe.costo }} €</p>
+              <p><strong>Classe:</strong> {{ item.classe.classe }}</p>
+              <p><strong>Numero Posti:</strong> {{ item.targa.num_posti }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>    
+  </div>
+</div>
+</div>
+
+
+  <!-- Footer -->
+  <footer>
+    PROGETTO ICONIC &nbsp;|&nbsp; anno 2025 &nbsp;|&nbsp; ingegneria dei sistemi web &nbsp;|&nbsp; gruppo formato da Pinotti, Manzoli e Zaia
+  </footer>
+
+
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map viaggio</title>
+  <link rel="stylesheet" href="login.component.scss">
+  
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a routerLink="/help-section">Aiuto</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <!-- Messaggio di successo -->
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+  
+    <!-- Messaggio di errore -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Title section -->
+    <div class="title">REGISTRAZIONE</div>
+    <div class="content">
+      <!-- Registration form -->
+      <form action="#">
+        <div class="user-details">
+          <!-- Input Nome -->
+          <div class="input-box">
+            <span class="details">Nome</span>
+            <input type="text" name="nome" placeholder="Inserisci il tuo nome" [(ngModel)]="nome">
+          </div>
+          <!-- Input Cognome -->
+          <div class="input-box">
+            <span class="details">Cognome</span>
+            <input type="text" name="cognome" placeholder="Inserisci il tuo cognome" [(ngModel)]="cognome">
+          </div>
+          <!-- Input Email -->
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" name="email" placeholder="Inserisci la tua email" [(ngModel)]="email">
+          </div>
+          <!-- Input Telefono -->
+          <div class="input-box">
+            <span class="details">Numero di Telefono</span>
+            <input type="text" name="telefono" placeholder="Inserisci numero di telefono" [(ngModel)]="telefono">
+          </div>
+          <!-- Input Password -->
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input type="password" name="password" placeholder="Inserisci password" [(ngModel)]="password">
+          </div>
+        </div>
+  
+        <!-- Submit button -->
+        <button type="submit" class="button no-margin" (click)="onRegister()">REGISTRATI</button>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- Footer -->
+  <footer>
+    PROGETTO ICONIC &nbsp;|&nbsp; anno 2025 &nbsp;|&nbsp; ingegneria dei sistemi web &nbsp;|&nbsp; gruppo formato da Pinotti, Manzoli e Zaia
+  </footer>
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map viaggio</title>
+  <link rel="stylesheet" href="map.component.scss">
+  
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a routerLink="/funzione1">TROVA IL TUO VIAGGIO</a></li>
+      <li><a routerLink="/funzione2">SCOPRI DOVE ANDARE</a></li>
+      <li><a routerLink="/carrello">CARRELLO</a></li>
+      <li><a routerLink="/help-section">Aiuto</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-container">
+    <h1>PERCORSO DEL VIAGGIO</h1>
+    <div id="map" class="mappa" ></div>
+    
+    <div class="info-box">
+        <h2>Dettagli del Viaggio</h2>
+        <div class="details-grid">
+          <div><strong>Partenza:</strong> {{this.data.partenza}}</div>
+          <div><strong>Ora Partenza:</strong> {{this.data.ora_partenza}}</div>
+          <div><strong>Arrivo:</strong> {{this.data.arrivo}}</div>
+          <div><strong>Ora Arrivo:</strong> {{this.data.ora_arrivo}}</div>
+          <div><strong>Classe:</strong> {{this.data.classe.classe}}</div>
+          <div><strong>Prezzo:</strong> {{this.data.classe.costo}}</div>
+          <div><strong>Posti disponibili:</strong> {{this.data.targa.num_posti}}</div>
+        </div>
+      
+        <div class="booking-controls">
+            <label for="quantity"><strong>Quantità biglietti:</strong></label>
+            <select id="quantity" [(ngModel)]="quantity">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button class="purchase-button" (click)="addToCart()">Acquista</button>
+          </div>
+      </div>
+      
+
+  </div>
+  
+  
+  
+
+
+
+  <!-- Footer -->
+  <footer>
+    PROGETTO ICONIC &nbsp;|&nbsp; anno 2025 &nbsp;|&nbsp; ingegneria dei sistemi web &nbsp;|&nbsp; gruppo formato da Pinotti, Manzoli e Zaia
+  </footer>
+
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICONIC progetto BUS-EXPRESS</title>
+  <link rel="stylesheet" href="initial-page.component.scss">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+</head>
+<body>
+
+  <div class="social-icons">
+    <a href="https://www.instagram.com" target="_blank" class="fa-brands fa-instagram"></a>
+    <a href="https://www.tiktok.com" target="_blank" class="fa-brands fa-tiktok"></a>
+    <a href="https://www.facebook.com" target="_blank" class="fa-brands fa-facebook"></a>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="#funzioni">Funzioni</a></li>
+      <li><a routerLink="/help-section">Aiuto</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+      <div class="logo">ICONIC</div>
+
+    <main class="main-content">
+      <h1>BUSEXPRESS</h1>
+
+      <div id="funzioni">
+        <span class="anchor" id="funzioni"></span>
+        <div class="button-group">
+            <a routerLink="/funzione1"><button class="funzione-btn" >TROVA IL TUO VIAGGIO</button> </a>
+            <a href="/funzione2"><button class="funzione-btn">SCOPRI DOVE ANDARE</button> </a>
+        </div>
+      </div>
+
+      <div id="help">
+        <span class="anchor" id="help"></span>
+        <div class="button-group" style="margin-top: 40px;">
+            <a routerLink="/help-section"> <button class="help-btn">HELP</button> </a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    PROGETTO ICONIC &nbsp;|&nbsp; anno 2025 &nbsp;|&nbsp; ingegneria dei sistemi web &nbsp;|&nbsp; gruppo formato da Pinotti, Manzoli e Zaia
+  </footer>
+
+</body>
+</html>

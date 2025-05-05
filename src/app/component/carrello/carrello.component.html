@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map viaggio</title>
+  <link rel="stylesheet" href="carrello.component.scss">
+  
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a routerLink="/funzione1">TROVA IL TUO VIAGGIO</a></li>
+      <li><a routerLink="/funzione2">SCOPRI DOVE ANDARE</a></li>
+      <li><a routerLink="/help-section">Aiuto</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-container">
+    <div class="carrello-container">
+      <h2>IL TUO CARRELLO:</h2>
+    
+      <!-- Lista dei viaggi -->
+      <div *ngIf="carrello.length > 0; else carrelloVuoto">
+        <mat-card *ngFor="let item of carrello" class="card-container">
+          
+          <mat-card-content>
+            <div class="horizontal-info">
+              <p><strong>Partenza:</strong> {{ item.viaggio.partenza }}</p>
+              <p><strong>Orario Partenza:</strong> {{ item.viaggio.ora_partenza }}</p>
+              <p><strong>Arrivo:</strong> {{ item.viaggio.arrivo }}</p>
+              <p><strong>Orario Arrivo:</strong> {{ item.viaggio.ora_partenza}}</p>
+              <p><strong>Orario Arrivo:</strong> {{ item.viaggio.ora_arrivo }}</p>
+              <p><strong>Prezzo:</strong> {{ item.viaggio.classe.costo }} €</p>
+              <button (click)="rimuoviViaggio(item.viaggio.id_viaggio)" class="button no-margin">Rimuovi</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      
+      <ng-template #carrelloVuoto>
+        <p>Il carrello è vuoto.</p>
+      </ng-template>
+    
+      <!-- Totale -->
+      <div class="totale-container">
+        <h3>TOTALE: {{ totale }} €</h3>
+        <button class="button no-margin" (click)="apriPagamento()">EFFETTUA PAGAMENTO</button>
+      </div>
+    </div>  
+      
+
+  </div>
+
+
+
+  <!-- Modale per il pagamento -->
+<div class="modal" *ngIf="mostraPagamento">
+  <div class="modal-content">
+    <h3>Inserisci i dati per il pagamento</h3>
+    <form (ngSubmit)="confermaPagamento()">
+      <div class="form-group">
+        <label for="nome">Nome sulla carta</label>
+        <input type="text" id="nome" [(ngModel)]="datiPagamento.nome" name="nome" required>
+      </div>
+      <div class="form-group">
+        <label for="numeroCarta">Numero Carta</label>
+        <input type="text" id="numeroCarta" [(ngModel)]="datiPagamento.numeroCarta" name="numeroCarta" required>
+      </div>
+      <div class="form-group">
+        <label for="scadenza">Data di Scadenza</label>
+        <input type="text" id="scadenza" [(ngModel)]="datiPagamento.scadenza" name="scadenza" placeholder="MM/AA" required>
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" [(ngModel)]="datiPagamento.cvv" name="cvv" required>
+      </div>
+      <button type="submit" class="button pagamento">Conferma Pagamento</button>
+      <button type="button" class="button pagamento annulla" (click)="chiudiPagamento()">Annulla</button>
+    </form>
+  </div>
+</div>
+  
+  
+  
+
+
+
+  <!-- Footer -->
+  <footer>
+    PROGETTO ICONIC &nbsp;|&nbsp; anno 2025 &nbsp;|&nbsp; ingegneria dei sistemi web &nbsp;|&nbsp; gruppo formato da Pinotti, Manzoli e Zaia
+  </footer>
+
+
+
+</body>
+</html>
+
+
