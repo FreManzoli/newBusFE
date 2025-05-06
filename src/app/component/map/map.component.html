@@ -15,6 +15,7 @@
     <ul>
       <li><a routerLink="/funzione1">TROVA IL TUO VIAGGIO</a></li>
       <li><a routerLink="/funzione2">SCOPRI DOVE ANDARE</a></li>
+      <li><a routerLink="/registrazione">REGISTRAZIONE</a></li>
       <li><a routerLink="/carrello">CARRELLO</a></li>
       <li><a routerLink="/help-section">Aiuto</a></li>
     </ul>
@@ -31,7 +32,7 @@
           <div><strong>Ora Partenza:</strong> {{this.data.ora_partenza}}</div>
           <div><strong>Arrivo:</strong> {{this.data.arrivo}}</div>
           <div><strong>Ora Arrivo:</strong> {{this.data.ora_arrivo}}</div>
-          <div><strong>Classe:</strong> {{this.data.classe.classe}}</div>
+          <div><strong>Classe:</strong> {{decodeUUIDToString(data.classe.classe)}}</div>
           <div><strong>Prezzo:</strong> {{this.data.classe.costo}}</div>
           <div><strong>Posti disponibili:</strong> {{this.data.targa.num_posti}}</div>
         </div>

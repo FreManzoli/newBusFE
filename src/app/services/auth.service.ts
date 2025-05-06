@@ -31,23 +31,23 @@ export class AuthService {
     return this.http.get(`${this.apiUrl}/email/${email}`);
   }
 
-  // Metodo per salvare il token (se necessario)
+  // Metodo per salvare il token di autenticazione
   saveToken(token: string): void {
-    localStorage.setItem('authToken', token);
+    sessionStorage.setItem('authToken', token); // Salva il token JWT in sessionStorage
   }
 
   // Metodo per ottenere il token
   getToken(): string | null {
-    return localStorage.getItem('authToken');
+    return sessionStorage.getItem('authToken'); // Recupera il token JWT da sessionStorage
   }
 
   // Metodo per verificare se l'utente è autenticato
   isAuthenticated(): boolean {
-    return !!this.getToken();
+    return !!this.getToken(); // Verifica se il token è presente
   }
 
   // Metodo per effettuare il logout
   logout(): void {
-    localStorage.removeItem('authToken');
+    sessionStorage.removeItem('authToken'); // Rimuove il token JWT da sessionStorage
   }
 }

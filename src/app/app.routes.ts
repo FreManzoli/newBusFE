@@ -13,7 +13,7 @@ import { RegistrazioneComponent } from './component/registrazione/registrazione.
 
 export const routes: Routes = [
   
-  { path: '', redirectTo: '/registrazione', pathMatch: 'full' },
+  { path: '', redirectTo: '/initial-page', pathMatch: 'full' },
   { path: 'help-section', component: HelpSectionComponent},
   
   { path: 'funzione1', component: Funzione1Component},

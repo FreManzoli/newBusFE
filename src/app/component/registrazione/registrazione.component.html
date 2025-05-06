@@ -34,15 +34,24 @@
       <div id="funzioni">
         <span class="anchor" id="funzioni"></span>
         <div class="button-group">
-            <a routerLink="/login"><button class="funzione-btn" >REGISTRATI</button> </a>
-            <a href="/signin"><button class="funzione-btn">SEI GIÀ REGISTRATO?</button> </a>
+          <!-- Mostra la scritta e il bottone di logout se l'utente è autenticato -->
+          <ng-container *ngIf="autenticazioneEffettuata">
+            <p class="auth-message">AUTENTICAZIONE EFFETTUATA</p>
+            <button class="funzione-btn logout-btn" (click)="Logout()">LOGOUT</button>
+          </ng-container>
+
+          <!-- Mostra i pulsanti se l'utente non è autenticato -->
+          <ng-container *ngIf="!autenticazioneEffettuata">
+            <a routerLink="/login"><button class="funzione-btn">REGISTRATI</button></a>
+            <a href="/signin"><button class="funzione-btn">SEI GIÀ REGISTRATO?</button></a>
+          </ng-container>
         </div>
       </div>
 
-      <div id="help">
+      <div id="help" *ngIf="!autenticazioneEffettuata">
         <span class="anchor" id="help"></span>
         <div class="button-group" style="margin-top: 40px;">
-            <a routerLink="/help-section"> <button class="help-btn">HELP</button> </a>
+          <a routerLink="/help-section"><button class="help-btn">HELP</button></a>
         </div>
       </div>
     </main>

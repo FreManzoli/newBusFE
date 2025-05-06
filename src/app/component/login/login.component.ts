@@ -25,7 +25,6 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   // Metodo per gestire la registrazione di un nuovo utente
-  // Metodo per gestire la registrazione di un nuovo utente
   onRegister(): void {
     const nuovoUtente = {
       nome: this.nome,
@@ -35,12 +34,17 @@ export class LoginComponent {
       username: this.username,
       password: this.password,
     };
+
     this.authService.createUtente(nuovoUtente).subscribe({
-      next: () => {
+      next: (response) => {
+        this.authService.saveToken(response.token);
+
         this.successMessage = 'Registrazione avvenuta con successo!'; // Imposta il messaggio di successo
         this.errorMessage = ''; // Resetta eventuali messaggi di errore
+
+        // Reindirizza alla pagina iniziale dopo 2 secondi
         setTimeout(() => {
-          this.router.navigate(['/initial-page']); // Reindirizza alla pagina di login dopo 2 secondi
+          this.router.navigate(['/initial-page']);
         }, 2000);
       },
       error: (error) => {
@@ -53,5 +57,4 @@ export class LoginComponent {
       },
     });
   }
-
 }

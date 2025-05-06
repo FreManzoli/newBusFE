@@ -14,6 +14,7 @@
       <li><a routerLink="/initial-page">TORNA INDIETRO</a></li>
 
       <li><a routerLink="/carrello">CARRELLO</a></li>
+      <li><a routerLink="/registrazione">REGISTRAZIONE</a></li>
       <li><a routerLink="/help-section">Aiuto</a></li>
     </ul>
   </nav>
@@ -51,8 +52,12 @@
     </div>
   </div>
 
+  <div *ngIf="errore" class="messaggio-errore">
+    <p>{{ messaggio }}</p>
+  </div>
+
   <!-- SPOSTATO DENTRO main-content -->
-  <div id="mostra">
+  <div *ngIf="!errore" id="mostra">
     <div class="output">
       <p>
         <strong>Partenza:</strong> {{cittaPartenza}} <br> 
@@ -61,7 +66,7 @@
     </div>
 
     <div id="tabella-bus">
-      <div *ngFor="let item of dataList; let i = index" class="card-container">
+      <div *ngFor="let item of dataList; let i = index" class="card-container" (click)="navigateToMap(item)">
         <mat-card class="mat-elevation-z4">
           <mat-card-content>
             <div class="horizontal-info">
@@ -70,8 +75,8 @@
               <p><strong>Arrivo:</strong> {{ item.arrivo }}</p>
               <p><strong>Orario Arrivo:</strong> {{ item.ora_arrivo }}</p>
               <p><strong>Prezzo:</strong> {{ item.classe.costo }} €</p>
-              <p><strong>Classe:</strong> {{ item.classe.classe }}</p>
-              <p><strong>Numero Posti:</strong> {{ item.targa.num_posti }}</p>
+              <p><strong>Classe:</strong> {{ decodeUUIDToString(item.classe.classe) }}</p>
+              
             </div>
           </mat-card-content>
         </mat-card>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, NgModule, OnInit} from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-funzione1',
-  imports: [RouterLink,NgFor,FormsModule,MatCardModule],
+  imports: [RouterLink,NgFor,FormsModule,MatCardModule,NgIf],
   templateUrl: './funzione1.component.html',
   styleUrl: './funzione1.component.scss'
 })
@@ -23,6 +23,8 @@ export class Funzione1Component{
   costoMinimo: number | null = null; // Memorizza il costo massimo
   cittaPartenza: string = ''; //Memorizza la partenza
   cittaArrivo: string = ''; // Memorizza l'arrivo
+  messaggio: string = '';
+  errore: boolean = false; // Flag per gestire gli errori
 
   constructor(private router:Router, private http: HttpClient) {} // inietto il modulo httpclient per effettuare le chiamate http e router per navigare tra i moduli
 
@@ -38,6 +40,7 @@ export class Funzione1Component{
       .subscribe(
         (response: any) => {
           // Successo: il server ha restituito una risposta valida
+          this.errore=false;
           this.dataList = response;
           console.log('Dati ricevuti:', this.dataList);
         },
@@ -45,7 +48,8 @@ export class Funzione1Component{
           // Errore: il server ha restituito un errore
           if (error.status === 404) {
             console.error('Errore 404: Risorsa non trovata.');
-            alert('Nessun risultato trovato per la combinazione di partenza e arrivo.');
+            this.errore = true; // Imposta il flag di errore a true
+            this.messaggio ='Nessun risultato trovato per la combinazione di partenza e arrivo.';
           } else {
             console.error('Errore durante la richiesta:', error);
             alert('Si è verificato un errore. Riprova più tardi.');
@@ -59,6 +63,7 @@ export class Funzione1Component{
       .subscribe(
         (response: any) => {
           // Successo: il server ha restituito una risposta valida
+          this.errore=false;
           this.dataList = response;
           console.log('Dati ricevuti:', this.dataList);
         },
@@ -66,7 +71,8 @@ export class Funzione1Component{
           // Errore: il server ha restituito un errore
           if (error.status === 404) {
             console.error('Errore 404: Risorsa non trovata.');
-            alert('Nessun risultato trovato per i parametri di costo inseriti.');
+            this.errore = true; // Imposta il flag di errore a true
+            this.messaggio ='Nessun risultato trovato per i parametri di costo inseriti.';
           } else {
             console.error('Errore durante la richiesta:', error);
             alert('Si è verificato un errore. Riprova più tardi.');
@@ -80,6 +86,7 @@ export class Funzione1Component{
     this.http.get(`http://localhost:8080${this.apiUrl}/orario-partenza-arrivo?min=${orario_min}&partenza=${partenza}&arrivo=${arrivo}`)
       .subscribe(
         (response: any) => {
+          this.errore=false;
           // Successo: il server ha restituito una risposta valida
           this.dataList = response;
           console.log('Dati ricevuti:', this.dataList);
@@ -88,13 +95,30 @@ export class Funzione1Component{
           // Errore: il server ha restituito un errore
           if (error.status === 404) {
             console.error('Errore 404: Risorsa non trovata.');
-            alert('Nessun risultato trovato per i parametri di orario e destinazione.');
+            this.errore = true; // Imposta il flag di errore a true
+            this.messaggio ='Nessun risultato trovato per i parametri di orario e destinazione.';
           } else {
             console.error('Errore durante la richiesta:', error);
             alert('Si è verificato un errore. Riprova più tardi.');
           }
         }
       );
+  }
+
+  decodeUUIDToString(uuid: string): string {
+    // Prendi solo la parte significativa dell'UUID (senza i trattini)
+    const hexString = uuid.replace(/-/g, '');
+  
+    // Converte ogni coppia di caratteri esadecimali in un carattere ASCII
+    let result = '';
+    for (let i = 0; i < hexString.length; i += 2) {
+      const hexPair = hexString.substring(i, i + 2);
+      const charCode = parseInt(hexPair, 16);
+      if (charCode !== 0) { // Ignora i caratteri nulli (0x00)
+        result += String.fromCharCode(charCode);
+      }
+    }
+    return result;
   }
 
 }
