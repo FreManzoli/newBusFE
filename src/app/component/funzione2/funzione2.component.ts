@@ -36,6 +36,7 @@ export class Funzione2Component {
         this.errore=false;
         this.dataList = response;
         console.log(this.dataList);
+        console.log(this.errore);
       },
       (error: any) => {
         // Errore: il server ha restituito un errore
@@ -43,6 +44,7 @@ export class Funzione2Component {
           this.errore=true;
           console.error('Errore 404: Risorsa non trovata.');
           this.messaggio='Nessun risultato trovato per la partenza inserita.';
+          console.log(this.errore);
         } else {
           console.error('Errore durante la richiesta:', error);
           alert('Si è verificato un errore. Riprova più tardi.');

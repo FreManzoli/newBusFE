@@ -86,7 +86,7 @@ export class MapComponent implements OnInit {
         this.cartService.addViaggioToCarrello(this.data.id_viaggio, this.quantity).subscribe({
             next: () => {
                 this.router.navigate(['/carrello']);
-                alert('Viaggio aggiunto al carrello con successo!');
+                //alert('Viaggio aggiunto al carrello con successo!');
             },
             error: (err) => {
                 console.error('Errore durante l\'aggiunta al carrello:', err);

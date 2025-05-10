@@ -103,7 +103,7 @@ export class CarrelloComponent implements OnInit, OnDestroy {
   confermaPagamento(): void {
     if (this.datiPagamento.nome && this.datiPagamento.numeroCarta && this.datiPagamento.scadenza && this.datiPagamento.cvv) {
       // Mostra un messaggio di successo
-      alert('Pagamento effettuato con successo!');
+      //alert('Pagamento effettuato con successo!');
 
       // Svuota il carrello nel backend
       this.cartService.svuotaCarrello().subscribe({
@@ -126,7 +126,7 @@ export class CarrelloComponent implements OnInit, OnDestroy {
 
   Logout(): void {
     sessionStorage.removeItem('authToken'); // Rimuove il token JWT da sessionStorage
-    alert('Sei stato disconnesso.');
+    //alert('Sei stato disconnesso.');
   }
 
   decodeUUIDToString(uuid: string): string {

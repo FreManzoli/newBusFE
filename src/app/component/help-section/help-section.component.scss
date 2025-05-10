@@ -136,20 +136,35 @@ html {
   }
 
   .info-text {
-    font-size: 28px;
-    color: #000;
-    margin-bottom: 30px;
-    letter-spacing: 2px;
-    font-weight: bold;
-    transition: transform 0.3s ease;
+    margin: 20px 0;
+    padding: 15px;
+    font-size: 30px;
+    color: #020202; /* Colore del testo */
   }
 
   .info-text span {
-    color: red;
+    display: block;
+    margin-bottom: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #ff0000; /* Colore blu per il titolo */
   }
 
-  .info-text:hover {
-    transform: scale(1.05);
+  .info-text ul {
+    list-style: none; /* Rimuove i puntini predefiniti */
+    padding-left: 0;
+  }
+
+  .info-text li {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+  }
+
+  .info-text li i {
+    margin-right: 10px;
+    color: #ff0000; /* Colore blu per le frecce */
   }
 
   .footer {
