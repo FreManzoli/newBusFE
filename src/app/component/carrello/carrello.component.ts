@@ -104,14 +104,14 @@ export class CarrelloComponent implements OnInit, OnDestroy {
     if (this.datiPagamento.nome && this.datiPagamento.numeroCarta && this.datiPagamento.scadenza && this.datiPagamento.cvv) {
       // Mostra un messaggio di successo
       //alert('Pagamento effettuato con successo!');
-
+      console.log('confermaPagamento chiamata');
       // Svuota il carrello nel backend
       this.cartService.svuotaCarrello().subscribe({
         next: () => {
           // Aggiorna il carrello e mostra il messaggio di successo
           this.caricaCarrello();
           this.totale = 0; // Resetta il totale
-          this.mostraPagamento = false; // Chiude la modale
+          this.mostraPagamento = false; // Chiude 
           this.messaggioPagamento = 'PAGAMENTO EFFETTUATO CON SUCCESSO'; // Imposta il messaggio
         },
         error: (err) => {
